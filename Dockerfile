@@ -1,13 +1,10 @@
-FROM maven:3.9.9-eclipse-temurin-17
+FROM maven:3.9.6-eclipse-temurin-21
 
 WORKDIR /app
 
 COPY pom.xml .
-
 COPY src ./src
 
-RUN mvn clean package -DskipTests
-
-EXPOSE 8080
+RUN mvn -B clean package -DskipTests
 
 CMD ["java", "-jar", "target/my-app-1.0-SNAPSHOT.jar"]
